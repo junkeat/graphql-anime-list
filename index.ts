@@ -54,11 +54,10 @@ const typeDefs = gql`
 `;
 
 const data = require('./spacex.json');
-const launchesPasts = data;
 
 const resolvers = {
     Query: {
-      launchesPast: () => launchesPasts,
+      launchesPast: () => data,
     },
 };
 
@@ -67,5 +66,4 @@ const server = new ApolloServer({ typeDefs, resolvers });
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
-  console.log(launchesPasts);
 });
