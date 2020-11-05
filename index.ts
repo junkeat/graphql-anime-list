@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const express = require('express')
 
 const typeDefs = gql`
   type Ships {
@@ -62,6 +63,9 @@ const resolvers = {
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
+
+const app = express();
+server.applyMiddleware({ app });
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
